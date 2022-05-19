@@ -2,6 +2,7 @@ package main
 
 import(
 	"github.com/gin-gonic/gin"
+	"os"
 	"github.com/joho/godotenv"
 	log "github.com/sirupsen/logrus"
 	"github.com/0149Sailesh/iot-server/services"
@@ -74,5 +75,6 @@ func main()  {
 			"message": "pong",
 		})
 	})
-    r.Run()
+    portNo := os.Getenv("PORT")
+    r.Run(":"+portNo)
 }
