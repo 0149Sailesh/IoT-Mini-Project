@@ -8,6 +8,11 @@ import(
     "go.mongodb.org/mongo-driver/mongo/options"
 	"github.com/0149Sailesh/iot-server/config"
 )
+var DB *mongo.Client 
+
+func ConnectInit(){
+    DB = ConnectDB()
+}
 
 func ConnectDB() *mongo.Client  {
 	var l = log.WithFields(log.Fields{
@@ -33,8 +38,6 @@ func ConnectDB() *mongo.Client  {
     l.Info("Connected to MongoDB")
     return client
 }
-
-var DB *mongo.Client = ConnectDB()
 
 func GetCollection(client *mongo.Client, collectionName string) *mongo.Collection {
     collection := client.Database("IoT").Collection(collectionName)
